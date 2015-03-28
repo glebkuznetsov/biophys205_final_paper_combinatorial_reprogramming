@@ -1,0 +1,70 @@
+\documentclass[10pt]{article}
+
+% Smaller margins
+% \usepackage{fullpage}
+\usepackage[margin=0.5in]{geometry}
+
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+\begin{document}
+
+% Remove page number on first page.
+\thispagestyle{empty}
+
+% Title
+\begin{flushleft}
+    {\Large
+        \textbf{Directed differentiation through combinatorial transcription factor activation and gene regulatory network quantification}
+    }
+    \\
+    Gleb Kuznetsov | Biophysics 205 Proposal Draft | March 29, 2015
+\end{flushleft}
+
+\textbf{Brief Summary:} Improving strategies to create mammalian cell types of interest will expand the potential of stem cell and directed differentiation-based therapies. Differentiation occurs through a cascade of gene expression and epigenetic changes within a cell. Rational analysis followed by low throughput experimentation has led to numerous demonstrations of derivations of specific cell types that resemble target types morphologically and functionally through ectopic over-expression of certain transcription factors. However, on a molecular level these induced cell and tissue types still harbor signature of their originating cells \cite{cahan2014cellnet}, which may ultimately limit their stability and therapeutic potential. I propose leveraging advances in reading and writing cell state to combinatorially explore directed differentiation pathways and identify new combinations that are less constrained by assumptions and knowledge a priori. The core idea is to use a catalytically dead Cas9 (dCas9) fused with an activating domain, along with a library of arrays of multiple guide RNAs simultaneously targeting activation of different combinations of transcription factors.
+\newline
+
+\textbf{Background:} In order to better engineer cells, we need a quantitative measure of cell state and techniques for updating the state of cells to more closely achieve the targeted state. Cell reprogramming has traditionally been accomplished through ectopic over-expression of transcription factors. The requirement of delivering entire transcription factor constructs limits the throughput of testing combinations of TFs. Recently, a complementary pair of studies showed that engineered cells still carry significant signatures from their cells of origin before reprogramming to iPS state and subsequent directed differentiation \cite{morris2014dissecting}, \cite{cahan2014cellnet}. These studies develop and demonstrate the use of a platform CellNet that infers gene regulatory networks (GRNs) \cite{davidson2006gene} from cell and tissue expression data, which serves as a quantitative readout of cell state.
+
+In addition to its utility as a way to introduce genomic mutations, CRISPR/Cas9, specifically in a catalytically dead form (dCas9), has been fused with transcription activating domains to yield a powerful tool for modulating activation. Several recent advances have made orders of magnitude of activation possible \cite{chavez2015VPR}, \cite{konermann2014genome}. Additionally, new tricks for better delivery of gRNA arrays are continuing to be reported, such as \cite{xie2015boosting}.
+
+Finally methods based on chip-based oligo synthesis make it possible to synthesize different versions of products which can be assembled into larger products in a combinatorial fasion as in \cite{kosuri2010scalable}.
+\newline
+
+\textbf{Aim 1: Develop system for combinatorially exploring space of transcription factor activation to bring cell state closer to goal.}
+
+Start with a culture of differentiated cells, say induced hepatocytes (iHeps) as in \cite{morris2014dissecting}. Two main components need to be introduced: an activating dCas9 such as in \cite{chavez2015VPR} or \cite{konermann2014genome}, and an array of CRISPR guide RNAs (gRNAs) that target some combination of transcription factor promoters. The dCas9 can be introduced early on with all experiments carried on clonally and libraries of different combinations of gRNA array cassettes can be introduced after. Upon lentiviral infection, the culture is left for several days to incubate. It may be desirable to come up with a strategy for splitting cells part way through incubation to prevent cells that diverge too far from the desired cell type from affecting their neighbors. After a week or so of incubation, there are a few ways to get quantitative readout.
+
+To quantify results, RNA-seq will be used in combination with computational methods that assess state of GRN \cite{cahan2014cellnet}. A potential variation on this is to do single-cell RNA-seq which will allow identifying individual cells that mostly resemble the target GRN network, and should pick up the inserted array that corresponds to this ideal transition.
+\newline
+
+\textbf{Aim 2: Demonstrate that system can be used to generate cell types that are closer to targets. (Model system TBD)} Following closely from Aim 1, we hope to show that this method of combinatorial TF activation actually yields cells that are closer to their target type.
+\newline
+
+\textbf{Impact:} The main goal of this project is to demonstrate a way to achieve more accurate products of directed differentiation. Additionally, by generating data linking GRNs to TF activation, it may be possible to glean more insight into the process of development.
+\newline
+
+\textbf{Extensions:}
+
+\begin{itemize}
+
+\item Leverage orthogonal Cas9s for combiantions of simultaneous activation and repression of transcription factors.
+
+\item Target other epigenetic modifiers in addition to transcription factors.
+
+\item Measure more than expression data, including other epigenetic data such as methylation and chromatin modifications.
+
+\end{itemize}
+
+\pagebreak
+
+\bibliographystyle{unsrt}
+\bibliography{initial_proposal}
+
+\end{document}

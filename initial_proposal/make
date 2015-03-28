@@ -1,0 +1,6 @@
+#!/bin/bash
+
+pdflatex initial_proposal
+bibtex initial_proposal
+pdflatex initial_proposal
+pdflatex initial_proposal
