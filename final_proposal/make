@@ -1,0 +1,10 @@
+#!/bin/bash
+
+pdflatex final_proposal
+bibtex final_proposal
+pdflatex final_proposal
+pdflatex final_proposal
+rm final_proposal.aux
+rm final_proposal.bbl
+rm final_proposal.blg
+rm final_proposal.log
