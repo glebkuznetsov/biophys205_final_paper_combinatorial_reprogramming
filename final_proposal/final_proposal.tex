@@ -8,6 +8,9 @@
 % cite package, to clean up citations in the main text. Do not remove.
 \usepackage{cite}
 
+% Handle images
+\usepackage{graphicx}
+
 % Remove brackets from numbering in List of References
 \makeatletter
 \renewcommand{\@biblabel}[1]{\quad#1.}
@@ -47,9 +50,14 @@ The ability to limit the space of combinations to test through a quantitative un
 
 The purpose of \textit{Aim 1} is to test only combinatorial gene activation using a dCas9-activator domain fusion and to demonstrate the major steps in the iterative strategy which is the essence of the full method described in this proposal. To validate and tune the method, I will use the exercise of ``rediscovering'' the Yamanaka reprogramming factors Oct4, Sox2, Klf4, and c-Myc (OSKM) that were shown to induce mouse embryonic fibroblasts into a pluripotent state \cite{takahashi2006induction}.
 
-I first provide an end-to-end overview of the approach and then describe each step in more detail below. The approach involves the following steps:
-\newline
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{fig1}
+\caption{\textit{(A)} Overview of iterative reprogramming approach using lentiviral library composed of combinatorial gRNAs. \textit{(B)} Combinatorial cloning strategy based on CombiGEM\cite{cheng2014enhanced}.}
+\label{fig1}
+\end{figure}
 
+Figure \ref{fig1} shows a general overview of the approach consisting of the following steps:
 \begin{enumerate}
     \setlength{\itemsep}{0pt}
     \item{Identify the candidate transcription factors for which we'll test combinations. For rediscovering the Yamanaka factors, we will start with the original 24 initial candidates reported in that work \cite{takahashi2006induction}.}
