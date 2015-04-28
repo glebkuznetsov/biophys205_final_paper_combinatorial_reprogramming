@@ -53,3 +53,15 @@ Use new system to identify candidate factors for a different system? Show that w
 
 Aim 3:
 This can be more of a fishing expedition aim where we try various combinations and just see what we get.
+
+The gRNA array can be made to be inducible. This could be tissue-specific induction. Or induction by some extrinsic factor. I wonder if it's possible to insert a set of arrays that basically run a whole program of differentiation as the tissue types transition from one to the next. That way, once you reach a particular tissue type, you transition to the next tissue type, ignoring the fact that the environment might not be ideal. In a way, you're forming a deep well.
+
+The big vision here is an almost digital approach to reprogramming cells. Given a cell type of interest, we should be able to press the right knobs to obtain that cell type. If we can control expression of the genome, both up and down regulation, we should be able to go against whatever signals the physical environment is trying to send.
+
+Which tissue? Eventually, we want to be able derive every cell type of interest.
+
+Murry, Keller, 2008 describe creating various cell types. Reading this now.
+
+Can we eventually achieve shaping goals without genetic modification?
+
+Combinatorial Genetics En Masse from Tim Lu to generate combinations of gRNAs
