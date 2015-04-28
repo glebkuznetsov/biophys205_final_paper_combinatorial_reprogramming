@@ -27,9 +27,11 @@
     Gleb Kuznetsov | Biophysics 205 Final Project Proposal | April 28, 2015
 \end{flushleft}
 
-\section*{Abstract}
+\begin{abstract}
 
-Improved strategies for cellular reprogramming and directed differentiation offer to advance the potential for stem cell-based therapies and patient/tissue-specific drug screening. Rational analysis followed by low throughput experimentation has enabled derivation of specific cell types that resemble target types morphologically and functionally. So far, this has most commonly been accomplished through ectopic overexpression of transcription factors (TFs). However, these reprogrammed cells do not fully recapitulate their target cell types in many cases. On a molecular level, induced cells still harbor signature of their originating cells \cite{cahan2014cellnet}, which may ultimately limit their stability and therapeutic potential. I propose leveraging advances in reading and writing cell state to combinatorially explore reprogramming and directed differentiation pathways with the goal of identifying cell fate modification programs that are less constrained by assumptions and knowledge a priori. I describe an iterative strategy for discovering such pathways. This strategy leverages catalytically dead Cas9 (dCas9) fused to activating or repressing domains (and simultaneous use of orthogonal dCas9's with respective fusions) along with a combinatorial library of guide RNA arrays simultaneously targeting activation and/or repression of multiple genomic loci. Fluorescence-activated cell sorting (FACS) provides a high-throughput means of assaying progress towards a goal and RNA-seq, both targeted and single cell, in combination with computational means of inferring cell state from transcription data, allows for closing the gap between reprogrammed and target cell state.
+Improved strategies for cellular reprogramming and directed differentiation offer to advance the potential for stem cell-based therapies and patient/tissue-specific drug screening. Rational analysis followed by low throughput experimentation has enabled derivation of specific cell types that resemble target types morphologically and functionally. However, these reprogrammed cells do not fully recapitulate their target cell types in many cases. On a molecular level, most induced cell lines have been shown to harbor signatures of their originating cells \cite{cahan2014cellnet}, which may ultimately limit their stability and therapeutic potential. I propose leveraging advances in writing cell epigenetic state to combinatorially explore reprogramming and directed differentiation pathways with the goal of identifying cell fate modification programs that are less constrained by assumptions and knowledge \textit{a priori}. I describe an iterative strategy for discovering such pathways. This strategy leverages catalytically dead Cas9 (dCas9) fused to activating or repressing domains (and simultaneous use of orthogonal dCas9's with respective fusions) along with a combinatorial library of guide RNA arrays simultaneously targeting activation and/or repression of multiple genomic loci. Fluorescence-activated cell sorting (FACS) provides a high-throughput means of assaying progress towards a goal and RNA-seq, both targeted and single cell, in combination with computational means of inferring cell state from transcription data, allows for closing the gap between reprogrammed and target cell state.
+
+\end{abstract}
 
 \section*{Introduction}
 
@@ -37,135 +39,110 @@ Better strategies for deriving cell types of interest in vitro will play a centr
 
 Still, while the reported programmed cell types may resemble their target types on a morphological, functional, and molecular level to some extent, imperfections in both the process of deriving these cells and cell line products remain obstacles in the pursuit of therapies and drug screening efforts. A commonly employed technique for reprogramming, the overexpression of ectopic factors, is limited in throughput and results in the integration of exogenous genetic material into the genome of a cell, increasing the risk of using the resulting cells in human therapies and potentially confounding the results of drug screening studies. Methods that avoid viral integration through the use of mRNAs \cite{warren2010highly}, are technically more complex and lower throughput, limiting their potential as a platform for discovering reprogramming pathways. A pair of complementary studies recently reported that most engineered cell lines examined still carry significant signatures of the cell lines they originated from \cite{cahan2014cellnet, morris2014dissecting}. The software platform at the core of these studies, CellNet, infers the gene regulatory networks (GRNs) active in a cell, which serves as the gold standard for quantitative representation of cell fate \cite{davidson2006gene}. Despite reporting a mismatch in cell state, CellNet also offers a path forward by recommending potential target factors for up- or down-regulation in subsequent engineering efforts.
 
-While this iterative process of overexpressing or knocking down targets recommended by CellNet was demonstrated to be fruitful, for example for improving B cell to macrophage conversion \cite{morris2014dissecting}, recent advances in technologies to perturb cell epigenetic state potentially offer a higher throughput way forward. The CRISPR-Cas9 system is an RNA-programmable homing device for precisely targeting endonuclease activity to genomic loci of interest. The nuclease activity of the Cas9 protein may be inactivated yielding a catalytically dead Cas9 (dCas9) which can then be further fused to activation or repression domains, yielding a tool for precise epigenetic control \cite{qi2013repurposing}. Several recent advances have improved the activating strength of dCas9-activating domain fusions \cite{konermann2014genome, chavez2015VPR}, yielding a tool that enables physiologically relevant levels of activation of endogenous loci. Additionally, the CRISPR-Cas9 system is naturally multiplexable through the specification of multiple guide RNAs (gRNAs). All of this, in combination with advances in methods for combinatorial assembly of DNA constructs, reveals a system for combinatorially exploring perturbations of epigenetic cell state.
+While this iterative process of overexpressing or knocking down targets recommended by CellNet was demonstrated to be fruitful, for example for improving B cell to macrophage conversion \cite{morris2014dissecting}, recent advances in technologies to perturb cell epigenetic state potentially offer a higher throughput way forward. The CRISPR-Cas9 system is an RNA-programmable homing device for precisely targeting endonuclease activity to genomic loci of interest. The nuclease activity of the Cas9 protein may be inactivated yielding a catalytically dead Cas9 (dCas9) which can then be further fused to activation or repression domains, yielding a tool for precise epigenetic control \cite{qi2013repurposing}. Several recent advances have improved the activating strength of dCas9-activating domain fusions \cite{konermann2014genome, chavez2015VPR}, yielding a tool that enables physiologically relevant levels of activation of endogenous loci. Additionally, the CRISPR-Cas9 system is naturally multiplexable through the specification of multiple guide RNAs (gRNAs). Finally, orthogonal Cas9 proteins have been reported \cite{esvelt2013orthogonal}, enabling simultaneous programming and execution of functions of different nature (e.g. activation and repression). All of this, in combination with advances in methods for combinatorial assembly of DNA constructs, reveals a system for combinatorially exploring perturbations of epigenetic cell state.
 
-The ability to limit the space of combinations to test through a quantitative understanding of cell GRNs enabled by CellNet and the availability of highly programmable dCas9-effector domain fusions presents an opportunity for an iterative, high-throughput method for improving cell reprogramming and directed differentiation. I describe the development and application of this method in a series of four aims of increasing complexity and discovery potential: In \textit{Aim 1}, I focus only on testing combinations of TF activation and validate through an experiment to ``rediscover'' the Yamanaka factors in the induction of mouse embryo fibroblast to pluripotent embryonic stem cell-like fate \cite{takahashi2006induction}. In \textit{Aim 2}, I develop the ability to simultaneously search over activation and repression combinations by leveraging orthogonal dCas9 \cite{esvelt2013orthogonal} fusions with activation and repression effectors and validate in the context of reprogramming macrophages to B cells. In \textit{Aim 3}, I apply the system to the as yet unresolved problem of converting fibroblasts to hepatocytes. Finally, in \textit{Aim 4}, I describe a highly speculative method of hierarchically discovering \textit{de novo} reprogramming pathways through searching a large combinatorial space of activation and repression combinations and assaying for the appearance of cell state markers of increasing specificity in successive rounds of experimentation.
+The ability to limit the space of combinations to test through a quantitative understanding of cell GRNs enabled by CellNet and the availability of highly programmable dCas9-effector domain fusions presents an opportunity for an iterative, high-throughput method for improving cell reprogramming and directed differentiation. I describe the development and application of this method in a series of four aims of increasing complexity and discovery potential: In \textit{Aim 1}, I focus only on testing combinations of TF activation and validate through an experiment to ``rediscover'' the Yamanaka factors in the induction of mouse embryo fibroblast to pluripotent embryonic stem cell-like fate \cite{takahashi2006induction}. In \textit{Aim 2}, I develop the ability to simultaneously search over activation and repression combinations by leveraging orthogonal dCas9 \cite{esvelt2013orthogonal} fusions with activation and repression effectors and validate in the context of reprogramming macrophages to B cells. In \textit{Aim 3}, I apply the system to the as yet unresolved problem of converting fibroblasts to hepatocytes. Finally, in \textit{Aim 4}, I describe a highly speculative method of hierarchically discovering de novo reprogramming pathways through searching a large combinatorial space of activation and repression combinations and assaying for the appearance of cell state markers of increasing specificity in successive rounds of experimentation.
 
-\section*{Aim 1}
+\section{Aim 1: Test combinatorial gene activation only and validate by ``rediscovering'' Yamanaka factors.}
 
-\textbf{Design a system for combinatorial gene activation and validate by "rediscovering" Yamanaka factors.}
-
-Since the full approach that this proposal builds up to has many pieces, the purpose of \textit{Aim 1} is to test only combinatorial gene activation with a single dCas9-activator domain fusion. To validate and tune the method, I will use the context of rediscovering the Yamanaka reprogramming factors Oct4, Sox2, Klf4, and c-Myc (OSKM) that were shown to induce mouse embryonic fibroblasts into a pluripotent state \cite{takahashi2006induction}. This aim also captures the essence of the full approach described in this proposal.
+The purpose of \textit{Aim 1} is to test only combinatorial gene activation using a dCas9-activator domain fusion and to demonstrate the major steps in the iterative strategy which is the essence of the full method described in this proposal. To validate and tune the method, I will use the exercise of ``rediscovering'' the Yamanaka reprogramming factors Oct4, Sox2, Klf4, and c-Myc (OSKM) that were shown to induce mouse embryonic fibroblasts into a pluripotent state \cite{takahashi2006induction}.
 
 I first provide an end-to-end overview of the approach and then describe each step in more detail below. The approach involves the following steps:
+\newline
 
 \begin{enumerate}
- \item{Identify the candidate transcription factors for which we'll test combinations. For rediscovering the Yamanaka factors, we will start with the original 24 initial candidates reported in that work \cite{takahashi2006induction}.}
- \item{Prepare lentivirus library containing combinations of the transcription factors.}
- \item{Infect mouse embryonic fibroblast cells with lentivirus library at appropriate titer. Select on some antibiotic select for expressing transductants only.}
- \item{After some amount of time (days?) harvest cells and place on FACS, sorting for embryonic cell specific marker.}
- \item{Sequence barcodes from the positive and negative wells. Look for enrichment, especially in positive.}
- \item{Redesign lentivirus library to enrich for highly represented guides. Repeat.}
- \item{RNA-sequencing and CellNet on final products to identify GRN state. Use this information to update lentivirus library.}
+    \setlength{\itemsep}{0pt}
+    \item{Identify the candidate transcription factors for which we'll test combinations. For rediscovering the Yamanaka factors, we will start with the original 24 initial candidates reported in that work \cite{takahashi2006induction}.}
+    \item{Prepare lentiviral library containing combinations of the transcription factors.}
+    \item{Infect and incubate.}
+    \item{Harvest cells and sort using FACS, targeting markers important in target cell type.}
+    \item{Sequence barcodes for each well and iterate on lentiviral library. Repeat steps 3-5 several times.}
+    \item{RNA-sequencing and CellNet on final products to identify GRN state. Use this information to update lentivirus library.}
 \end{enumerate}
 
-There are several design choices that need to be made and then optimized. These include
+\subsection{General Design Decisions}
 
-\begin{itemize}
-    \item{What dCas9-activating domain combination will we use?}
-    \item{How many parallel gRNAs will be tested at a time?}
-    \item{What titer of virus to use? Do we want only a single expression factor?}
-\end{itemize}
+There are a few design decisions to make \textit{a priori} but these will likely need to be tuned throughout developing the method. One decision is which dCas9-activator fusion to use. Two systems were recently reported: an engineered dCas9-activator system designed by inspecting dCas9 structure from the Zhang Lab \cite{konermann2014genome} and a dCas9 fused to a tripartite activator, VP64-p65-rta (VPr) from the Church Lab \cite{chavez2015VPR}. Both were shown to have as much as four orders of magnitude-fold activation over baseline expression for some targets. Another option, rather than using dCas9-activating domain fusion, is to use an activating dCas9-acetyltransferase fusion which catalyzes acetylation of histone H3 lysine 27 at its target sites, leading to robust transcriptional activation of target genes from promoters and both proximal and distal enhancers \cite{hilton2015epigenome}.
 
-I design controls based on the knowledge of the expected results of the screen. To serve as a negative control, I synthesize lentivirus payloads that leave out gRNAs targetting promoter regions of the known Yamanaka factors. Thus we expect not to get very poor if any representation of active repression. As a positive control, I create a library that is composed only of Yamanaka factor gRNAs. It may be necessary to go through a trial of quantitative PCR in order to identify the best single gRNA that regulates expression of each factor.
+Another design decision to make in advance is how many gRNAs to test in parallel. This decision is constrained by the decreasing activation effect with increasing target multiplexity demonstrated in the dCas9-activator reports mentioned above, by the method for constructing the gRNA-barcode constructs according to the CombiGEM \cite{cheng2014enhanced} strategy (detailed below), as well as the combinatorial library size to explore. Guided by the \textit{Aim 1} context of rediscovering the four Yamanaka factors and the highest multiplicity reported for CombiGEM so far of four elements, I will use cassettes consisting of four guide RNAs.
 
-Following is a more in depth discussion of each step.
+Finally, another design decision is what multiplicity of infection (MOI) to use for lentivirus infection. For simplicity, I will start with a MOI of one, although increasing this number increases the opportunities for testing combinations of higher numbers, if not exhaustively.
 
-\subsection*{Identifying candidate transcription factors for screen}
+\subsection{Controls}
 
-Since the number of transcription factors in the human genome numbers around 2600 \cite{babu2004structure}, it's not reasonable to search the space of all possible combinations. Instead, I will employ the strategy of narrowing down the list of factors to those that are highly expressed in the target cell type as measured by transcriptional profiling. Takahashi and Yamanaka, 2006 report that they started with 24 factors so we will start with those. There
+Given knowledge of the OSKM ``solution'' to the search for the Yamanaka factors, a positive control will involve carrying out the steps of the experiment with the individual gRNA component inputs to the combinatorial library construction limited to those targeting only the four OSKM factors. The negative control will be the complementary library that omits gRNAs targeting any of the OSKM factors. One caveat, discussed below under \textit{Risks}, is that it's not clear that a single guide RNA (sgRNA) targeted to the promoter region of any of OSKM is sufficient for adequate activation. To verify adequate expression, I would conduct quantitative PCR and compare to non-transduced cells to verify activation of the target loci.
 
+\subsection{Aim 1 Steps}
 
-\subsection*{Constructing lentivirus library carrying payload of gRNA combinations}
+\subsubsection{Identifying candidate transcription factors for screen}
 
-Genetic constructs will be delivered to cells by lentivirus transduction. The core of the strategy is to deliver a payload of multiple guide RNAs along with barcodes that allows for readout. To assemble the library, I will use the CombiGEM assembly strategy developed in \cite{cheng2014enhanced} and recently adapted to mammalian systems \cite{lu2015combigem}. This strategy allows assembling massively combinatorial libraries of DNA along with their barcodes. Briefly, a gRNA and barcode are synthesized with a pair of restriction sites separating them. Any two pairs of gRNA+barcode can then be combined by digesting with the inner restriction enzymes on one, and the outer restriction enzyme on the other, followed by ligation. This process can be iteratively repeated, demonstrated to work up to four times in \cite{cheng2014enhanced}.
+Since the number of transcription factors in the human genome numbers around 2600 \cite{babu2004structure}, it's intractable to search the space of all possible combinations, even at a multiplicity of two. Instead, it is necessary is to computationally assess expression data for the target tissue type and/or leverage CellNet \cite{cahan2014cellnet} to generate a list of candidate nodes that may play a role in establishing the gene regulatory networks for the tissue type.
 
-The lentivirus needs to include two additional components: an antibiotic cassette and the dCas9-activator domain fusion construct.
+However, given that \textit{Aim 1} attempts to validate the method, I will artificially narrow the space of candidate transcription factor targets to the 24 candidates originally targeted by Takahashi and Yamanaka \cite{takahashi2006induction}. One caveat to be aware of is that it may be necessary to include multiple gRNAs for a particular locus, which complicates the combinatorial story a bit.
 
-The gRNA + barcode array is then loaded into a lentivirus using a standard lentivirus protocol. An antibiotic cassette is included so that transduced cells can be selected for.
+\subsubsection{Constructing combinatorial lentiviral library}
 
-\subsection*{Infection with lentivirus and incubation}
+Genetic constructs will be delivered to cells by lentivirus transduction. The choice of lentivirus for delivery is guided by the opportunity to have reasonable control over multiplicity of infection through modulating virus titer vs cell concentration, as well as stable integration of the payload, enabling propagation throughout cell progeny. The payload delivered by a given lentivirus includes a an array of gRNAs, an array of corresponding barcodes that uniquely identify the combination and order of gRNAs, the dCas9-activator fusion, and a selectable marker for being able to purify out cells that are successfully infected by at least one lentivirus.
 
-THe lentivirus library is delivered to the cells at a low multiplicity of infection with a target of no more than one lentivirus construct per cell. This can be varied depending on the protocol. Cells are incubated for some amount of time depending on the target cell type and protocol optimization.
+To construct the combinatorial library of gRNA and barcodes, I will use the strategy of Combinatorial Genetics En Masse (CombiGEM) \cite{cheng2014enhanced} originally developed for use in \textit{E. coli} and recently communicated to function in mammalian cells \cite{lu2015combigem}. Briefly, CombiGEM uses an iterative cloning strategy starting with a library of DNA elements consisting of a gRNA and corresponding barcode. The DNA element includes restriction sites immediately between the gRNA and barcode and on either side. A library of vectors is generated through restricting between gRNA and barcodes and a library of inserts is created from the same source by cleaving around the gRNA and barcode. The vector and insert libraries are combined and ligated, yielding new DNA elements with an array of gRNAs and the corresponding array of barcodes. This process is repeated for each order of multiplexity desired, and was reported to work robustly to at least a multiplexity of four in \cite{cheng2014enhanced}.
 
-\subsection*{Harvest cells and FACS}
+\subsubsection{Infection with lentivirus and incubation}
 
-After several days of incubation (exact number of days depends on the target cell type), prepare cells for FACS. One or more fluorophore-bound antibodies appropriate for the cell type of interest are leveraged. This allows us to select .
+The lentiviral library is delivered to the cells at a calculated multiplicity of infection (MOI). The simplest strategy would be to use an MOI of one; however, increasing the MOI potentially allows testing greater combinations. After some time (48 hours for Yamanaka context), cells are challenged by compound for which selectable marker delivered by lentivirus protects against. Cells are allowed to incubate for more time (48 hours for Yamanaka context), allowing for propagation of expression changes and ideally appearance of reprogrammed cells.
 
-\subsection*{Sequence barcodes and interpret results}
+\subsubsection{Harvesting cells and FACS}
 
-The cells expressing markers of interest as interpreted by their fluorescent signal have their barcodes sequenced using next generation sequencing.
+Knowledge of the target GRNs informs selection of antibodies bound to fluorophores for FACS. For the Yamanka factor rediscovery experiment, there are many commercially available kits for assaying induced pluripotent stem cells. These include target markers of pluripotent state such as OCT4, SOX2, SSEA4, and TRA-1-60. The appropriate markers should be determined based on the cell type of interest. It may be possible to use multiple sorting channels to distinguish expression of varying intensity.
 
-The results are then interpreted. Naively, one expects an over-enrichment of relevant markers and under-enrichment of irrelevant markers.
+\subsubsection{Sequencing barcodes, designing next lentiviral library}
 
+Following FACS, the barcode regions are amplified using pre-designed PCR primer adapters \cite{cheng2014enhanced} and the barcodes are read using next generation sequencing. The resulting data is then analyzed for enrichment of targeted factors. Based on enrichment, the lentiviral library is redesigned to over-represent the enriched factors. Repeat steps 3 - 5 several times until no significant change in enrichment is observed.
 
-\subsection*{RNA-sequencing / inferring GRNs}
+\subsubsection{Transcriptional profiling, inferring GRNs}
 
-To test this strategy, I will employ mouse embryonic fibroblasts and aim to "rediscover" the Yamanaka factors that have been shown to return mouse embryonic fibroblasts to a pluripotent state \cite{takahashi2006induction}. I choose this context for testing the combinatorial strategy because of the limited search space.
+After the final iteration of lentiviral infection, the best expressing cells as assessed by FACS can be transcriptionally profiled. The choice of technology depends on availability. Bulk chip or RNA-seq may be adequate given the sorting carried out, but single cell RNA-seq may yield insights that bulk sequencing does not, especially directly connecting expression to specific barcode. Comparing the GRN of these final cells to the target GRN state may inform additional factors to test, which may have been left out of the original screen. A new lentiviral library can then be redesigned and infection and sorting and/or transcriptional profiling repeated.
 
-Instead of using ectopic expression of transcription factors, the core of my strategy is to instead use targeted activation of the endeogenous factor loci.
+\subsection{Risks}
 
-For activation, I need to choose a dCas9-activator fusion. Several have recently been reported \cite{chavez2015VPR, konermann2014genome}. Additionally, we can use chromatin remodelers as reported in
+\textbf{Activation efficiency}: dCas9-activating domain fusions have only been characterized for a handful of factors and already this has shown that the amount of activation depends on the gene as well as the specific gRNA target \cite{chavez2015VPR, konermann2014genome}. Additionally, activation fold falls with increasing multiplexity. Nonetheless, it has been shown that a single guide RNA is sufficient for significant activation of several factors \cite{konermann2014genome}.
+\newline
 
-The Cas9 system can be used in multiple by including multiple guide RNAs in a single array. In order, to test different combinations of gRNAs, it's necessary to have a way of synthesizing an array. Since it is necessary to be able to read out which construct made it into the cell, it's important to consider the read-out strategy. One strategy that allows combinatorial combinations of elements to test is CombiGem \cite{cheng2014enhanced}. This allows putting together barcodes and gRNA structures together iteratively.
+\noindent \textbf{Calibrating lentivirus multiplicity of infection}: The current bulk barcode sequencing strategy does not give a way to test multiplicity of infection.
+\newline
 
-Once the combinatorial library of constructs has been prepared, it's necessary to load lentivirus and deliver to cells. Mouse embryonic fibroblast cells are grown as described in \cite{takahashi2006induction}. Lentivirus infection is allowed to take place. The titer is configured so that each cell on average gets a single virus particle infection. Although variations on this could allow for more combinations.
+\noindent \textbf{Biological limitations}: It might be possible that certain loci are inaccessible due to chromatin state and none of the starting pool of transcription factors can serve as an adequate pioneer factor to initiate transition.
 
-* characterize sgRNA activity OR test multiple sgRNAs. The sgRNAs can fit into the combinatorial strategy.
+\section{Aim 2: Implement searching over combinations of activation and repression}
 
-* Perform flow cytometry after some number of days post infection to look for expression of particular markers. Alternatively can use strategy used by Yamanaka to confer resistance to some sort of toxin.
+In \textit{Aim 2}, I add the next level of complexity to the combinatorial method developed in this proposal, introducing the ability to simultaneously activate and repress different loci. To validate this method, I use macrophage to B cell conversion, which was also used to demonstrate ectopic factor and shRNA-knockdown mediate reprogramming as guided by CellNet \cite{morris2014dissecting}. It was shown that the best solution required up-regulation of some factors and repression of others.
 
-\subsection*{Risks}
+To allow simultaneous activation and repression of different loci, I will leverage orthogonal dCas9s based on orthogonal Cas9 proteins reported in \cite{esvelt2013orthogonal}. The corresponding gRNA library designs must be tweaked to use the correct scaffolding RNA elements (crRNA and tracrRNAs) for their respective dCas9.
 
-\textbf{Activation efficiency}: dCas9-activating domain fusions have only been characterized for a handful of factors at this point, and already this has shown that the amount of activation depends on the gene as well as the particular target point leveraged \cite{chavez2015VPR, konermann2014genome}.
+CellNet will be used to specify which factors in the original cell type should be down-regulated and which should be up-regulated. Two separate lentiviral libraries will be created, one for activation and the other for repression.
 
-\textbf{Calibrating lentivirus transduction efficiency}: How do we get the right amount of transduction?
+Lentiviral infection will be carried out initially for multiplicity of infection of one.
 
-\textbf{Other biological limitations}: For example, local chromatin state.
+A caveat that arises here is that the current strategy doesn't allow for identifying which pairs of up-regulation and down-regulation libraries co-occur. Still, limiting the library based on iteration as in \textit{Aim 1} should help clarify this.
 
-\section*{Aim 2}
+\subsection{Controls}
 
-\textbf{Show that we can simultaneously do upregulation and downregulation. I think there is an example in hepatocytes where we want to do both.}
+Similar to the Yamanaka system above, as a negative control I would leave out the solution elements and show that we get underrepresentation of factors in flow cytometry. As a positive control, I would construct libraries enriched for the best solution as reported in \cite{morris2014dissecting}.
 
-The next level of complexity that I would like to add to the combinatorial strategy is being able to simultaneously up- and down-regulate loci. As a target, and also a control for developing this portion of the protocol, I would use the induced hepatocyte model from \cite{morris2014dissecting}.
+\subsection{Risks}
 
-There are several options for repression by dCas9.
+\textbf{How orthogonal is orthogonal?} I'm placing a bet on the orthogonality reported in \cite{esvelt2013orthogonal}.
 
-Again, due to the relative novelty of the system, it may be necessary to validate an initial set of guide RNAs. In particular, I would want to confirm that I can get simultaneous up- and down- regulation of particular mRNA targets as compared to controls.
+\section{Aim 3: Apply method to differentiation of mouse fibroblasts to hepatocytes}
 
-Similar to the Yamanaka system above, as a negative control I would leave out the \textit{solution} elements and show that we get underrepresentation of factors in flow cytometry. As a positive control, I would construct component that has the right expression factors to target.
+In this aim, I apply the method developed above to attempt to derive better hepatocytes than have previously been developed \cite{huang2011induction, sekiya2011direct}. CellNet was used to show that induced hepatocytes (iHeps) derived in \cite{sekiya2011direct} have little signature of hepatocytes were actually induced endoderm progenitors, capable of further differentiation toward both liver and intestine \cite{morris2014dissecting}.
 
-There are several strategies to achieving infection with the second library. We could use two different selection markers in each of the orthogonal dCas9 libraries, thus ensuring that only cells that get both are selected. On the other hand, we may be interested in activation-only or repression-only cases as well, so this additional step is not necessary.
+In this aim, I will start with de novo recommendations from CellNet for factors that should be respectively up- or down-regulated.
 
-* Controls:
-    - Negative: Experiment where we leave out relevant factors.
-    - Positive: Experiment where we only use the relevant factors.
+The final comparison will be to perform transcriptional profiling (ideally single cell RNA-Seq) and compare inferred GRNs to that of actual liver tissue.
 
-* Why is liver tissue interesting? Therapeutically interesting.
+\section*{Aim 4: Hierarchical discovery of do novo reprogramming pathways}
 
-* If we can achieve Aim 1, then we take on more difficult task of reprogramming something else.
-
-\subsection*{Risks}
-
-How orthogonal is orthogonal? I'm placing a bet on the orthogonality reported in \cite{esvelt2013orthogonal}. It might be possible for the Cas9's to interfere with each other.
-
-\section*{Aim 3}
-
-\textbf{Use pooled approach and greater number of candidate targets, as well as iteration, to identify new path for differentiation.}
-
-Derive the best damn hepatocytes ever.
-
-In this aim, I stretch the limits of the approach developed in this proposal. The idea is to extend to greater number of targets and identify new paths for differentiation. As a test system, we will attempt to identify hepatocytes that remain out of reach.
-
-Apply system to something new, perhaps in vivo test? i.e. can we find product that is better than others? Perhaps reconstituting hepatocytes?
-
-* Try using greater set of combinations.
-
-Further work:
-
-In addition to activation and repression, we also want to think about chromatin state modifiers. This is something that we've ignored a little bit in this discussion here.
-
-\section*{Aim 4}
+This aim is intentionally open-ended and involves pushing the limits of the iterative method developed in this proposal. The idea is to start with a set with mouse embryonic stem cells and a large library of gRNAs. The same locus may be targeted for activation and repression in the orthogonal lentiviral libraries. Activating gRNAs should be enriched for pioneer factors, especially in early rounds. The protocol is carried out as before. At the first run of the FACS step, a broad set of antibodies are chosen, perhaps specific to lineage specification endoderm, ectoderm and mesoderm. Following FACS and sequencing of barcodes in each bucket, the pools are enriched for those factors. The process is then repeated for the three separate pools. At FACS, another round of endoderm vs ectoderm vs mesoderm may be repeated. At some point, specific subtypes of each category are selected for, allowing further narrowing in. The decision of subsequent rounds of selection can be decided based on the type of cell.
 
 \textbf{Exploratory search for previously unknown differentiation paths.}
 
@@ -179,23 +156,27 @@ The idea is to add a level of iteration to the kj
 
 \subsection*{Effect of Cell Environment}
 
-The environment of cells is known to play an important role in cell fate \cite{drummond2008stem}. The experiment setup in this proposal does not take this into account at the moment. It may be possible that obtaining a particular cell type requires the surrounding environment, including cells and physical setup, to require the
+The environment of cells is known to play an important role in cell fate \cite{drummond2008stem}. The experiment setup in this proposal does not take this into account at the moment. It may be possible that obtaining a particular cell type requires the surrounding environment, including cells and physical setup, to be of a certain distribution of cells.
 
-\section*{Future opportunities}
+% \section*{Future opportunities}
 
-\textbf{Leverage single-cell targeted RNA-seq}
+% \textbf{Leverage single-cell targeted RNA-seq}
 
-The method described in this proposal would benefit from increasing resolution of transcription. Depending on limitations of technology, it may not be necessary to do full genome RNA-seq, but instead to do targeted capture on loci of interest, in consideration of cost. Technologies like Cell-Seq and others could be of use here. If this method is made accessible, it may be interesting to generate many perturbed cells, and just explore the landscape of regulation. Something about forward genetics or forward genomics.
+% The method described in this proposal would benefit from increasing resolution of transcription. Depending on limitations of technology, it may not be necessary to do full genome RNA-seq, but instead to do targeted capture on loci of interest, in consideration of cost. Technologies like Cell-Seq and others could be of use here. If this method is made accessible, it may be interesting to generate many perturbed cells, and just explore the landscape of regulation. Something about forward genetics or forward genomics.
 
 \pagebreak
 
 \bibliographystyle{unsrt}
 \bibliography{final_proposal}
 
-\section*{Outside Help}
+\section*{Statement of Outside Help}
 
-Daniel Goodman (PhD student, Church Lab) - Conversation regarding synthesizing combinatorial gRNA cassette libraries. Discussed limitations on Chip-based synthesis, as well as strategies (barcodes, etc.) for read-out.
+\noindent Daniel Goodman (PhD student, Church Lab) - Conversation regarding synthesizing combinatorial gRNA cassette libraries. Discussed limitations on Chip-based synthesis, as well as strategies (barcodes, etc.) for read-out.
+\newline
 
-Alex Ng (PhD student, Church Lab) - Conversation regarding combinatorial targeting using dCas9-activating domain fusion. Alex pointed out that activation strength for any given promoter is some amount relative to the baseline of that promoter, which may present a difficulty in scaling up this strategy.
+\noindent Alex Ng (PhD student, Church Lab) - Conversation regarding issues related to combinatorial targeting using dCas9-activating domain fusion. Alex pointed out that activation strength for any given promoter is some amount relative to the baseline of that promoter.
+\newline
+
+\noindent Pierce Ogden (PhD student) - Conversation regarding lentiviral libraries.
 
 \end{document}
